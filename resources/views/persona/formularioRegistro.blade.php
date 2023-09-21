@@ -24,7 +24,7 @@
     </div>
 @endif
 
-<form method="POST" action="/persona">
+<form method="POST" action="{{route('persona.store')}}">
     @csrf
     <label for="nombre">Nombre:</label>
     <input type="text" id="nombre" name="nombre" ><br><br>

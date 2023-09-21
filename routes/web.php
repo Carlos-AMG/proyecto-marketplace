@@ -18,4 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get(){};
+
+// Persona endpoints
 Route::resource('persona', PersonaController::class);
+Route::get('/login', [PersonaController::class, 'showLogin'])->name('persona.showLogin');
+Route::post('/login', [PersonaController::class, 'login'])->name('persona.login');

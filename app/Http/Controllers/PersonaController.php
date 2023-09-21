@@ -15,6 +15,22 @@ class PersonaController extends Controller
     public function index()
     {
         //
+        // return view('persona/login');
+
+    }
+
+    public function showLogin(){
+        return view('persona/formularioLogin');
+    }
+
+    public function login(Request $request){
+        // $request
+        $persona = Persona::where('correo', $request->correo)->get();
+        // $persona = Persona::where('correo', 'carlos@correo.com')->get();
+
+        // $contrasenaEncriptada = Hash::make($request->contrasena);
+        
+        return view('persona.index', ['personas' => $persona]);
     }
 
     /**
