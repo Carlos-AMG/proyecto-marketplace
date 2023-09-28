@@ -19,10 +19,18 @@
     <form action="{{route('producto.store')}}" method="POST">
         @csrf
         <label for="nombre">Nombre: </label>
-        <input type="text" name='nombre' id='nombre'><br>
-        <label for="correo">Correo: </label>
-        <input type="email" name="correo" id='correo'>
-        <input type="submit" value="Submit">
+        <input type="text" name='nombre' id='nombre'><br><br>
+        
+        <label for="existencia">Existencia: </label>
+        <input type="number" name="existencia" id='existencia'><br><br>
+        
+        <label for="precio">Precio: </label>
+        <input type="number" name="precio" id="precio"><br><br>
+
+        <label for="descripcion">Descripcion: </label>
+        <input type="text" name="descripcion" id="descripcion">
+
+        <input type="submit" value="Submit"><br><br>
     </form>
 
 </body>

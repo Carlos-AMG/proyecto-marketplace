@@ -12,7 +12,9 @@ class ProductoController extends Controller
      */
     public function index()
     {
-        //
+        $productos = Producto::all();
+
+        return view('producto/index_producto',['productos' => $productos]);
     }
 
     /**
@@ -20,7 +22,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        return view('producto/create_producto');
     }
 
     /**
@@ -28,7 +30,20 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre' => ['required','min:3','max:50'],
+            'existencia' => 'required',
+            'precio' => 'required',
+            'descripcion' => ['required','min:1','max:300']
+        ]);
+
+        $producto = new Producto();
+        $producto->nombre = $request->nombre;
+        $producto->existencia = $request->existencia;
+        $producto->precio = $request->precio;
+        $producto->descripcion = $request->descripcion;
+        $producto->save();
+        return redirect()->back();
     }
 
     /**
@@ -36,7 +51,7 @@ class ProductoController extends Controller
      */
     public function show(Producto $producto)
     {
-        //
+        return view('producto/show_producto',compact('producto'));
     }
 
     /**
@@ -44,7 +59,7 @@ class ProductoController extends Controller
      */
     public function edit(Producto $producto)
     {
-        //
+        return view('producto/edit_producto',compact('producto'));
     }
 
     /**
@@ -52,7 +67,19 @@ class ProductoController extends Controller
      */
     public function update(Request $request, Producto $producto)
     {
-        //
+        $request->validate([
+            'nombre' => ['required','min:3','max:50'],
+            'existencia' => 'required',
+            'precio' => 'required',
+            'descripcion' => ['required','min:1','max:300']
+        ]);
+
+        $producto->nombre = $request->nombre;
+        $producto->existencia = $request->existencia;
+        $producto->precio = $request->precio;
+        $producto->descripcion = $request->descripcion;
+        $producto->save();
+        return redirect()->back();
     }
 
     /**
