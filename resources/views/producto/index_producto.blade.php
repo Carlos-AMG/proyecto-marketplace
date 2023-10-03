@@ -7,8 +7,37 @@
     <title>Document</title>
 </head>
 <body>
-    @foreach ($productos as $producto)
-        <h2>{{$producto->nombre}}</h2>
-    @endforeach
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Nombre</th>
+            <th>Existencia</th>
+            <th>Precio</th>
+            <th>Descripcion</th>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach ($productos as $producto)
+            <tr>
+                <td>{{$producto->id}}</td>
+                <td>{{$producto->nombre}}</td>
+                <td>{{$producto->existencia}}</td>
+                <td>{{$producto->precio}}</td>
+                <td>{{$producto->descripcion}}</td>
+                <td><a href="{{url('producto/'.$producto->id.'/edit')}}">Editar</a></td>
+                <td>
+                    <form action="{{url('producto/'.$producto->id)}}" method="POST">
+                        @method("DELETE")
+                        @csrf
+                        
+                        <button type="submit">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+        @endforeach
+    </tbody>
 </body>
 </html>
