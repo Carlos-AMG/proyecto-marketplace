@@ -13,5 +13,7 @@
         <h2>Alerta Alerta</h2>
         <h3>Alerta Alerta Alerta</h3>
     </x-alerta>
+    {{-- Para pasar datos a las variables --}}
+    {{-- <nombre_del_componente variable=valor> --}}
 </body>
 </html>

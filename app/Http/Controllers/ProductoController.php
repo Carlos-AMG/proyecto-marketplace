@@ -43,7 +43,7 @@ class ProductoController extends Controller
         $producto->precio = $request->precio;
         $producto->descripcion = $request->descripcion;
         $producto->save();
-        return redirect()->back();
+        return redirect()->route('producto.index');
     }
 
     /**
@@ -79,7 +79,7 @@ class ProductoController extends Controller
         $producto->precio = $request->precio;
         $producto->descripcion = $request->descripcion;
         $producto->save();
-        return redirect()->back();
+        return redirect()->route('producto.index');
     }
 
     /**

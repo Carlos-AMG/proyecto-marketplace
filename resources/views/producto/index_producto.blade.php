@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <x-nav_bar/>
     <thead>
         <tr>
             <th>#</th>
@@ -22,7 +23,9 @@
     <tbody>
         @foreach ($productos as $producto)
             <tr>
-                <td>{{$producto->id}}</td>
+                <x-contenedor_producto producto='$producto' />
+
+                {{-- <td>{{$producto->id}}</td>
                 <td>{{$producto->nombre}}</td>
                 <td>{{$producto->existencia}}</td>
                 <td>{{$producto->precio}}</td>
@@ -35,7 +38,7 @@
                         
                         <button type="submit">Eliminar</button>
                     </form>
-                </td>
+                </td> --}}
             </tr>
         @endforeach
     </tbody>
