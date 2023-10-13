@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Producto;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -13,8 +14,9 @@ class contenedor_producto extends Component
      */
     public $producto;
     
-    public function __construct($producto)
+    public function __construct(Producto $producto)
     {
+        $this->producto = new Producto();
         $this->producto = $producto;
     }
 

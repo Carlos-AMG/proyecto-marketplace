@@ -4,43 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{{url('public\startbootstrap-shop-homepage-gh-pages\assets\favicon.ico')}}" />
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{url('public\startbootstrap-shop-homepage-gh-pages\css\styles.css')}}" rel="stylesheet" /> --}}
+    <title>Productos</title>
 </head>
 <body>
     <x-nav_bar/>
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Nombre</th>
-            <th>Existencia</th>
-            <th>Precio</th>
-            <th>Descripcion</th>
-            <td></td>
-            <td></td>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach ($productos as $producto)
-            <tr>
-                <x-contenedor_producto producto='$producto' />
-
-                {{-- <td>{{$producto->id}}</td>
-                <td>{{$producto->nombre}}</td>
-                <td>{{$producto->existencia}}</td>
-                <td>{{$producto->precio}}</td>
-                <td>{{$producto->descripcion}}</td>
-                <td><a href="{{url('producto/'.$producto->id.'/edit')}}">Editar</a></td>
-                <td>
-                    <form action="{{url('producto/'.$producto->id)}}" method="POST">
-                        @method("DELETE")
-                        @csrf
-                        
-                        <button type="submit">Eliminar</button>
-                    </form>
-                </td> --}}
-            </tr>
-        @endforeach
-    </tbody>
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            @foreach ($productos as $producto)
+                <x-contenedor_producto :producto='$producto' />
+            @endforeach
+        </div>
+    </div>
+    
 </body>
 </html>
