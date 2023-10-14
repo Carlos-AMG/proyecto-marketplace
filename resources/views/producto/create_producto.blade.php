@@ -3,52 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Crear</title>
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <title>Create Product</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
     <x-nav_bar/>
-    @if ($errors->any())
-        <div>
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{$error}}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-    <form action="{{route('producto.store')}}" method="POST">
-        @csrf
-        <div class="">
-            <div class="mb-3 row">
-                <label for="nombre" class="col-sm-2 col-form-label">Nombre: </label>
-                <div class="col-sm-10">
-                    <input type="text" name='nombre' id='nombre'><br>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="nombre" class="col-sm-2 col-form-label">Existencia: </label>
-                <div class="col-sm-10">
-                    <input type="number" name="existencia" id='existencia'><br>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="nombre" class="col-sm-2 col-form-label">Precio: </label>
-                <div class="col-sm-10">
-                    <input type="number" name="precio" id="precio"><br>
-                </div>
-            </div>
-            <div class="mb-3 row">
-                <label for="nombre" class="col-sm-2 col-form-label">Descripcion: </label>
-                <div class="col-sm-10">
-                    <input type="text" name="descripcion" id="descripcion"><br>
-                </div>
-            </div>
     
-            <input type="submit" class="btn btn-outline-dark mt-auto" value="Submit"><br><br>
-            <div><a class="btn btn-outline-dark mt-auto" href="{{url('producto/')}}">Regresar</a></div>
+    <div class="container mt-3">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Registrar producto</h5>
+    
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+    
+                <form action="{{ route('producto.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="nombre">Nombre de producto:</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="existencia">Existencias:</label>
+                        <input type="number" name="existencia" id="existencia" class="form-control">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="precio">Precio:</label>
+                        <input type="number" name="precio" id="precio" class="form-control">
+                    </div>
+    
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion:</label>
+                        <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="imagen">Image URL (Optional):</label>
+                        <input type="url" name="imagen_url" id="imagen_url" class="form-control" placeholder="https://example.com/image.jpg">
+                    </div>
+    
+                    <div class="d-flex justify-content-start">
+                        <button type="submit" class="btn btn-primary btn-sm mr-2">Submit</button>
+                        <a href="{{ route('producto.index') }}" class="btn btn-secondary btn-sm">Back</a>
+                    </div>
+                </form>
+            </div>
         </div>
-    </form>
-
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
