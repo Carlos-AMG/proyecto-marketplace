@@ -29,22 +29,22 @@
                     @csrf
                     <div class="form-group">
                         <label for="nombre">Nombre de producto:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control">
+                        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{ old('nombre') }}">
                     </div>
     
                     <div class="form-group">
                         <label for="existencia">Existencias:</label>
-                        <input type="number" name="existencia" id="existencia" class="form-control">
+                        <input type="number" name="existencia" id="existencia" class="form-control" value="{{ old('existencia') }}">
                     </div>
     
                     <div class="form-group">
                         <label for="precio">Precio:</label>
-                        <input type="number" name="precio" id="precio" class="form-control">
+                        <input type="number" name="precio" id="precio" class="form-control" value="{{ old('precio') }}">
                     </div>
     
                     <div class="form-group">
                         <label for="descripcion">Descripcion:</label>
-                        <textarea name="descripcion" id="descripcion" class="form-control"></textarea>
+                        <textarea name="descripcion" id="descripcion" class="form-control"> {{ old('descripcion') }} </textarea>
                     </div>
                     
                     <div class="form-group">
