@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ProductoFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -21,4 +22,5 @@ class Producto extends Model
         return $this->belongTo(Producto::class);
     }
     */
+    protected $filleable = ['nombre','existencia','precio','descripcion'];
 }

@@ -37,12 +37,14 @@ class ProductoController extends Controller
             'descripcion' => ['required','min:1','max:300']
         ]);
 
-        $producto = new Producto();
-        $producto->nombre = $request->nombre;
-        $producto->existencia = $request->existencia;
-        $producto->precio = $request->precio;
-        $producto->descripcion = $request->descripcion;
-        $producto->save();
+        Producto::create($request->all());
+
+        // $producto = new Producto();
+        // $producto->nombre = $request->nombre;
+        // $producto->existencia = $request->existencia;
+        // $producto->precio = $request->precio;
+        // $producto->descripcion = $request->descripcion;
+        // $producto->save();
         return redirect()->route('producto.index');
     }
 
@@ -74,11 +76,12 @@ class ProductoController extends Controller
             'descripcion' => ['required','min:1','max:300']
         ]);
 
-        $producto->nombre = $request->nombre;
-        $producto->existencia = $request->existencia;
-        $producto->precio = $request->precio;
-        $producto->descripcion = $request->descripcion;
-        $producto->save();
+        Producto::where('id',$producto->id)->update($request->except('_token','_method'));
+        // $producto->nombre = $request->nombre;
+        // $producto->existencia = $request->existencia;
+        // $producto->precio = $request->precio;
+        // $producto->descripcion = $request->descripcion;
+        // $producto->save();
         return redirect()->route('producto.index');
     }
 
