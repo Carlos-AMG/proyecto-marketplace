@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('existencia');
             $table->float('precio');
             $table->text('descripcion');
-            // $table->urldecode('imagen');
+            $table->string('imagen');
             $table->timestamps();
         });
     }

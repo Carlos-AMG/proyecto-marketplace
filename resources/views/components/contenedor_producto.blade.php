@@ -2,7 +2,7 @@
     <div class="col mb-5">
         <div class="card h-100">
             <!-- Product image-->
-            <img class="card-img-top" src="https://via.placeholder.com/640x480.png/004466?text=animals+omnis" alt="..." />
+            <img class="card-img-top" src="{{$producto->imagen}}" alt="..." />
             <!-- Product details-->
             <div class="card-body p-4">
                 <div class="text-center">
