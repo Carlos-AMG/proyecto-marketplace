@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\ProductoController;
+use App\Models\Departamento;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// Solicitar que el usuario inicie sesion para las rutas
+// Route::middleware('auth')->group(function(){
+//     Route::resource('producto', ProductoController::class);
+//     Route::resource('departamento',Departamento::class);
+// });
+// Route::resource('producto', ProductoController::class)->middleware('auth');
+// Route::resource('departamento',Departamento::class)->middleware('auth');
 
 Route::resource('producto', ProductoController::class);
+Route::resource('departamento',DepartamentoController::class);
+
 Route::get('prueba',function(){
     return view('prueba');
 });

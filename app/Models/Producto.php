@@ -12,15 +12,10 @@ class Producto extends Model
     // Para indicar que no se guarde un dato en cierta columna
     public $timestamps = false;
 
-    /* public function objetos(){
-        return $this ->hasMany(Objeto::class);
-        objetos que corresponden con el producto
-    }*/
-    // En el otro modelo
-    /*
-    public funcion producto(){
-        return $this->belongTo(Producto::class);
+
+    public function Departamento(){
+        return $this->belongTo(Departamento::class);
     }
-    */
-    protected $filleable = ['nombre','existencia','precio','descripcion'];
+
+    protected $fillable = ['nombre','existencia','precio','descripcion','imagen','departamento_id'];
 }
