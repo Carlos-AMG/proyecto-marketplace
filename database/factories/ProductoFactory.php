@@ -21,7 +21,7 @@ class ProductoFactory extends Factory
             'existencia' => $this->faker->numberBetween(0,100),
             'precio' => $this->faker->numberBetween(0,100),
             'descripcion' => $this->faker->word(),
-            'imagen' => $this->faker->imageUrl(450,300,'food',true)
+            'imagen' => $this->faker->imageUrl(450,300,'food',true),
         ];
     }
 }
