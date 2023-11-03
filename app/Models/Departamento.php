@@ -10,8 +10,8 @@ class Departamento extends Model
     use HasFactory;
 
     public $timestamps = false;
-
-    public function Producto(){
+    
+    public function Productos(){
         return $this ->hasMany(Producto::class);
     }
 

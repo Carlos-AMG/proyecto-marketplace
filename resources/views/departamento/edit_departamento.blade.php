@@ -13,7 +13,7 @@
     <div class="container mt-3">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Editar producto</h5>
+                <h5 class="card-title">Editar Departamento</h5>
 
                 @if ($errors->any())
                     <div>
@@ -24,35 +24,20 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{route('producto.update',$producto)}}" method="POST">
+                <form action="{{route('departamento.update',$departamento)}}" method="POST">
                     @method("PATCH")
                     @csrf
 
                     <div class="form-group">
-                        <label for="nombre">Nombre de producto:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{$producto->nombre}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="existencia">Existencias:</label>
-                        <input type="number" name="existencia" id="existencia" class="form-control" value="{{$producto->existencia}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="precio">Precio:</label>
-                        <input type="number" name="precio" id="precio" class="form-control" value="{{$producto->precio}}">
+                        <label for="nombre">Nombre del Departamento:</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{$departamento->nombre}}">
                     </div>
 
                     <div class="form-group">
                         <label for="descripcion">Descripcion:</label>
-                        <textarea name="descripcion" id="descripcion" class="form-control"> {{$producto->descripcion}} </textarea>
+                        <textarea name="descripcion" id="descripcion" class="form-control"> {{$departamento->descripcion}} </textarea>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="imagen">Imagen URL:</label>
-                        <input type="url" name="imagen" id="imagen" class="form-control" placeholder="https://example.com/image.jpg" value="{{$producto->imagen}}">
-                    </div>
-
                     <div class="d-flex justify-content-start">
                         <button type="submit" class="btn btn-primary btn-sm mr-2">Submit</button>
                         <a href="{{ route('producto.index') }}" class="btn btn-secondary btn-sm">Back</a>

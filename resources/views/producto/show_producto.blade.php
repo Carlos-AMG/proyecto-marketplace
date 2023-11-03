@@ -21,6 +21,9 @@
             <li>
                 <h3>Descripcion: {{$producto->descripcion}}</h3>
             </li>
+            <li>
+                <h3>Departamento: {{$producto->departamento->nombre}}</h3>
+            </li>
         </ul>
         <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{url('producto/'.$producto->id.'/edit')}}">Editar</a></div>
         <div class="text-center">

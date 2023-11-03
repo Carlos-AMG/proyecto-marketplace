@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Departamento;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 
 class DepartamentoController extends Controller
@@ -45,7 +46,7 @@ class DepartamentoController extends Controller
      */
     public function show(Departamento $departamento)
     {
-        return view('departamento/show_departamento',compact($departamento));
+        return view('departamento/show_departamento',compact('departamento'));
     }
 
     /**
@@ -53,7 +54,7 @@ class DepartamentoController extends Controller
      */
     public function edit(Departamento $departamento)
     {
-        return view('departamento/edit_departamento',compact($departamento));
+        return view('departamento/edit_departamento',compact('departamento'));
     }
 
     /**
@@ -75,6 +76,6 @@ class DepartamentoController extends Controller
     public function destroy(Departamento $departamento)
     {
         $departamento->delete();
-        return redirect()->route('producto.index');
+        return redirect()->route('departamento.index');
     }
 }

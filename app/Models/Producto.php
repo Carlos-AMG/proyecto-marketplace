@@ -14,7 +14,7 @@ class Producto extends Model
 
 
     public function Departamento(){
-        return $this->belongTo(Departamento::class);
+        return $this->belongsTo(Departamento::class);
     }
 
     protected $fillable = ['nombre','existencia','precio','descripcion','imagen','departamento_id'];
