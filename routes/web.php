@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\DepartamentoController;
+use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProductoController;
-use App\Models\Departamento;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,6 +29,7 @@ Route::get('/', function () {
 
 Route::resource('producto', ProductoController::class);
 Route::resource('departamento',DepartamentoController::class);
+Route::resource('empleado',EmpleadoController::class)->middleware('auth');
 
 Route::get('prueba',function(){
     return view('prueba');

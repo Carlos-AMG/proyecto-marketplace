@@ -11,5 +11,12 @@ class Detalle_Factura extends Model
 
     public $timestamps = false;
 
+    public function Producto(){
+        $this->belongsTo(Producto::class);
+    }
+    public function Factura(){
+        $this->belongsTo(Factura::class);
+    }
+
     protected $fillable = ['factura_id','producto_id','cantidad','precio'];
 }
