@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Producto;
 
 class Factura extends Model
 {
@@ -12,7 +13,7 @@ class Factura extends Model
     public $timestamps = false;
 
     public function Detalle_Factura(){
-        return $this->hasMany(Detalle_Factura::class);
+        return $this->belongsToMany(Producto::class,'Detalle_Factura');
     }
 
     protected $fillable = ['fecha','user_id'];

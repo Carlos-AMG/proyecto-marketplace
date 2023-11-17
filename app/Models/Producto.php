@@ -5,7 +5,7 @@ namespace App\Models;
 use Database\Factories\ProductoFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Detalle_Factura;
+use App\Models\Factura;
 
 class Producto extends Model
 {
@@ -19,7 +19,7 @@ class Producto extends Model
     }
 
     public function Detalle_Facturas(){
-        return $this->hasMany(Detalle_Factura::class);
+        return $this->belongsToMany(Factura::class,'Detalle_Factuar');
     }
 
     protected $fillable = ['nombre','existencia','precio','descripcion','imagen','departamento_id'];
