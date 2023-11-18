@@ -4,8 +4,10 @@ namespace Database\Seeders;
 
 use App\Models\Departamento;
 use App\Models\Producto;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,5 +19,13 @@ class DatabaseSeeder extends Seeder
         Departamento::factory(4)
             ->has(Producto::factory()->count(5))
             ->create();
+        
+        $user = new User();
+        $user->name = 'admin'; 
+        $user->email = 'admin@admin';
+        $user->password = Hash::make('12345678');
+        $user->role = 'admin';
+        $user->save();
+
     }
 }

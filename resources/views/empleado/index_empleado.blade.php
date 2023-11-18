@@ -13,15 +13,16 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{url('public\startbootstrap-shop-homepage-gh-pages\css\styles.css')}}" rel="stylesheet" /> --}}
-    <title>Productos</title>
+    <title>Empleados</title>
 </head>
 <body>
     <x-nav_bar/>  
     
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            @foreach ($productos as $producto)
-                <x-contenedor_producto :producto='$producto' />
+            @foreach ($empleados as $empleado)
+                {{$empleado->name}}
+                {{-- <x-contenedor_producto :empleado='$producto' /> --}}
             @endforeach
         </div>
     </div>
