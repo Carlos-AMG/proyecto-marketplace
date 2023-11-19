@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie-edge">
-    <title>Create Departament</title>
+    <title>Add Employee</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
@@ -27,30 +27,30 @@
     
                 <form action="{{ route('empleado.store') }}" method="POST">
                     @csrf
+
                     <div class="form-group">
-                        <label for="nombre">Nombre de producto:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{ old('nombre') }}">
+                        <label for="name">Nombre del empleado:</label>
+                        <input type="text" name="name" id="name" class="form-control"  value="{{ old('name') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfc">RFC del empleado:</label>
+                        <input type="text" name="rfc" id="rfc" class="form-control"  value="{{ old('rfc') }}">
                     </div>
     
                     <div class="form-group">
-                        <label for="existencia">Existencias:</label>
-                        <input type="number" name="existencia" id="existencia" class="form-control" value="{{ old('existencia') }}">
+                        <label for="email">Correo:</label>
+                        <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}">
                     </div>
     
                     <div class="form-group">
-                        <label for="precio">Precio:</label>
-                        <input type="number" name="precio" id="precio" class="form-control" value="{{ old('precio') }}">
-                    </div>
-    
-                    <div class="form-group">
-                        <label for="descripcion">Descripcion:</label>
-                        <textarea name="descripcion" id="descripcion" class="form-control"> {{ old('descripcion') }} </textarea>
+                        <label for="password">Contraseña:</label>
+                        <input type="text" name="password" id="password" class="form-control" value="{{ old('password') }}">
                     </div>
                     
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="imagen">Imagen URL:</label>
                         <input type="url" name="imagen" id="imagen" class="form-control" placeholder="https://example.com/image.jpg">
-                    </div>
+                    </div> --}}
 
                     <div class="form-group">
                         <label for="departamento_id">Departamento:</label>

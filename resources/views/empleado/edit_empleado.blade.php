@@ -13,7 +13,7 @@
     <div class="container mt-3">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Editar producto</h5>
+                <h5 class="card-title">Editar empleado</h5>
 
                 @if ($errors->any())
                     <div>
@@ -24,38 +24,40 @@
                         </ul>
                     </div>
                 @endif
-                <form action="{{route('producto.update',$producto)}}" method="POST">
+
+                <form action="{{route('producto.update',$empleado)}}" method="POST">
                     @method("PATCH")
                     @csrf
 
                     <div class="form-group">
-                        <label for="nombre">Nombre de producto:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{$producto->nombre}}">
+                        <label for="nombre">Nombre del empleado:</label>
+                        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{$emlpeado->name}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfc">RFC del empleado:</label>
+                        <input type="text" name="rfc" id="rfc" class="form-control"  value="{{$emlpeado->rfc}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="correo">Correo del empleado:</label>
+                        <input type="email" name="correo" id="correo" class="form-control"  value="{{$emlpeado->email}}">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfc"> del empleado:</label>
+                        <input type="text" name="rfc" id="rfc" class="form-control"  value="{{$emlpeado->rfc}}">
                     </div>
 
                     <div class="form-group">
-                        <label for="existencia">Existencias:</label>
-                        <input type="number" name="existencia" id="existencia" class="form-control" value="{{$producto->existencia}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="precio">Precio:</label>
-                        <input type="number" name="precio" id="precio" class="form-control" value="{{$producto->precio}}">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="descripcion">Descripcion:</label>
-                        <textarea name="descripcion" id="descripcion" class="form-control"> {{$producto->descripcion}} </textarea>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="imagen">Imagen URL:</label>
-                        <input type="url" name="imagen" id="imagen" class="form-control" placeholder="https://example.com/image.jpg" value="{{$producto->imagen}}">
+                        <label for="departamento_id">Departamento:</label>
+                        <select name="departamento_id" id="departamento_id" class="form-control" value='{{$empleado->departamento->nombre}}'>
+                            @foreach ($departamentos as $departamento)
+                                <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="d-flex justify-content-start">
                         <button type="submit" class="btn btn-primary btn-sm mr-2">Submit</button>
-                        <a href="{{ route('producto.index') }}" class="btn btn-secondary btn-sm">Back</a>
+                        <a href="{{ route('empleado.index') }}" class="btn btn-secondary btn-sm">Back</a>
                     </div>
                 </form>
             </div>

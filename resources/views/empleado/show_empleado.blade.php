@@ -13,13 +13,13 @@
                 <h3>Id: {{$empleado->id}}</h3>
             </li>
             <li>
+                <h3>RFC: {{$empleado->rfc}}</h3>
+            </li>
+            <li>
                 <h3>Nombre: {{$empleado->name}}</h3>
             </li>
             <li>
-                <h3>Precio: {{$empleado->email}}</h3>
-            </li>
-            <li>
-                {{-- <h3>Descripcion: {{$producto->descripcion}}</h3> --}}
+                <h3>Correo: {{$empleado->email}}</h3>
             </li>
             <li>
                 <h3>Departamento: {{$empleado->departamento->nombre}}</h3>

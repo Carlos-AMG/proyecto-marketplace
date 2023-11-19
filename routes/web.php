@@ -29,8 +29,8 @@ Route::get('/', function () {
 // Route::resource('departamento',Departamento::class)->middleware('auth');
 
 Route::resource('producto', ProductoController::class);
-Route::resource('departamento',DepartamentoController::class);
-Route::resource('empleado',EmpleadoController::class)->middleware('auth');
+Route::resource('departamento',DepartamentoController::class)->middleware('auth.admin');
+Route::resource('empleado',EmpleadoController::class)->middleware('auth.admin');
 
 Route::get('prueba',function(){
     return view('prueba');

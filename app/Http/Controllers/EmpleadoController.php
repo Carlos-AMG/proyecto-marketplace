@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Departamento;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Hash;
 
 class EmpleadoController extends Controller
 {
     public function index()
     {
-        $empleados = User::where('role','employee');
+        $empleados = User::all()->where('role','employee');
 
         return view('empleado/index_empleado',['empleados'=>$empleados]);
     }
@@ -35,8 +35,16 @@ class EmpleadoController extends Controller
             'email' => 'required',
             'password' => 'required'
         ]);
-
-        User::create($request->all());
+        
+        // User::create($request->all())->hash('password')->role='employee';
+        $emp = new User();
+        $emp->name = $request->name;
+        $emp->email = $request->email;
+        $emp->password = Hash::make($request->password);
+        $emp->rfc = $request->rfc;
+        $emp->role = 'employee';
+        $emp->departamento_id = $request->departamento_id;
+        $emp->save();
 
         return redirect()->route('empleado.index');
     }

@@ -22,33 +22,38 @@
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{route('producto.index')}}">All Products</a></li>
-
-                            @if (auth()->user()->role == 'admin' || auth()->user()->role == 'employee')
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{{route('producto.create')}}">Add Product</a></li>    
+                            @if (Auth::check())
+                                @if (auth()->user()->role != 'client')
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="{{route('producto.create')}}">Add Product</a></li>    
+                                @endif    
                             @endif
+                            
                         </ul>
                     </li>
-                    @if (auth()->user()->role == 'admin')
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departament</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{route('departamento.index')}}">All Departaments</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{{route('departamento.create')}}">Add Departament</a></li>
-                            </ul>
-                        </li>
+                    @if (Auth::check())
+                        @if (auth()->user()->role == 'admin')
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Departament</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{route('departamento.index')}}">All Departaments</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="{{route('departamento.create')}}">Add Departament</a></li>
+                                </ul>
+                            </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employees</a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{route('empleado.index')}}">All Employees</a></li>
-                                <li><hr class="dropdown-divider" /></li>
-                                <li><a class="dropdown-item" href="{{route('empleado.create')}}">Add Employee</a></li>
-                            </ul>
-                        </li>
-                        
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Employees</a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="{{route('empleado.index')}}">All Employees</a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="{{route('empleado.create')}}">Add Employee</a></li>
+                                </ul>
+                            </li>
+                            
+                        @endif
                     @endif
+                    
                 </ul>
                 {{-- <form class="d-flex">
                     <button class="btn btn-outline-dark" type="submit">

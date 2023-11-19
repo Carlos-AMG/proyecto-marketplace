@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class nav_bar_unlogged extends Component
+class Contenedor_Empleado extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class nav_bar_unlogged extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.nav_bar_unlogged');
+        return view('components.contenedor_-empleado');
     }
 }
