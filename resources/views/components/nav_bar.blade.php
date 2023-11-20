@@ -21,11 +21,13 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{route('producto.index')}}">All Products</a></li>
+                            <li><a class="dropdown-item" href="{{route('producto.index')}}">Products</a></li>
                             @if (Auth::check())
                                 @if (auth()->user()->role != 'client')
                                     <li><hr class="dropdown-divider" /></li>
-                                    <li><a class="dropdown-item" href="{{route('producto.create')}}">Add Product</a></li>    
+                                    <li><a class="dropdown-item" href="{{route('producto.create')}}">Add Product</a></li>
+                                    <li><a class="dropdown-item" href="/deletedProducts">Deleted Products</a></li>
+                                    <li><a class="dropdown-item" href="/allProducts">All Products</a></li>
                                 @endif    
                             @endif
                             

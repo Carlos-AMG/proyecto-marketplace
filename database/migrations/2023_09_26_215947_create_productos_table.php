@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('imagen');
             $table->unsignedBigInteger('departamento_id');
             $table->foreign('departamento_id')->references('id')->on('departamentos');
+
+            $table->softDeletes();
             // $table->timestamps();
         });
     }

@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Producto extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     
     // Para indicar que no se guarde un dato en cierta columna
     public $timestamps = false;

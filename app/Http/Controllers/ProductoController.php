@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Departamento;
 use App\Models\Producto;
+use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
@@ -106,5 +107,14 @@ class ProductoController extends Controller
     {
         $producto->delete();
         return redirect()->route('producto.index');
+    }
+
+    public function eliminados(){
+        $productosEliminados = Producto::onlyTrashed()->get();
+        return view('producto/eliminados_producto',['productosEliminados'=>$productosEliminados]);
+    }
+    public function allProducts(){
+        $productos = Producto::withTrashed()->get();
+        return view('producto/todos_producto',['productos'=>$productos]);
     }
 }

@@ -33,6 +33,9 @@ use Illuminate\Support\Facades\Route;
 // Route::resource('departamento',Departamento::class)->middleware('auth');
 
 Route::resource('producto', ProductoController::class);
+Route::get('/allProducts', [ProductoController::class,'allProducts']);
+Route::get('/deletedProducts', [ProductoController::class,'eliminados']);
+
 Route::resource('departamento',DepartamentoController::class)->middleware('auth.admin');
 Route::resource('empleado',EmpleadoController::class)->middleware('auth.admin');
 Route::resource('factura',FacturaController::class);
