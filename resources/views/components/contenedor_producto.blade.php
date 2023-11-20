@@ -14,16 +14,20 @@
             </div>
             <!-- Product actions-->
             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-
+                @if (Auth::check())
+                    @if (auth()->user()->role != 'client' )
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{url('producto/'.$producto->id.'/edit')}}">Editar</a></div>
+                        <div class="text-center">
+                            <form action="{{url('producto/'.$producto->id)}}" method="POST">
+                                @method("DELETE")
+                                @csrf
+                                <button type="submit" class="btn btn-outline-dark mt-auto">Eliminar</button>
+                            </form>
+                        </div>    
+                    @endif
+                @endif
                 <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{url('producto/'.$producto->id)}}">Mostrar</a></div>
-                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{{url('producto/'.$producto->id.'/edit')}}">Editar</a></div>
-                <div class="text-center">
-                    <form action="{{url('producto/'.$producto->id)}}" method="POST">
-                        @method("DELETE")
-                        @csrf
-                        <button type="submit" class="btn btn-outline-dark mt-auto">Eliminar</button>
-                    </form>
-                </div>
+                
             </div>
         </div>
     </div>

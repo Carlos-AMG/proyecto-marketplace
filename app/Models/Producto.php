@@ -6,10 +6,12 @@ use Database\Factories\ProductoFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Factura;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Producto extends Model
 {
     use HasFactory;
+    
     // Para indicar que no se guarde un dato en cierta columna
     public $timestamps = false;
 

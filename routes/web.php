@@ -4,6 +4,9 @@ use App\Http\Controllers\DepartamentoController;
 use App\Http\Controllers\EmpleadoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FacturaController;
+use App\Http\Controllers\InformacionController;
+use App\Models\Factura;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,9 +20,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 // Solicitar que el usuario inicie sesion para las rutas
 // Route::middleware('auth')->group(function(){
 //     Route::resource('producto', ProductoController::class);
@@ -31,6 +35,12 @@ Route::get('/', function () {
 Route::resource('producto', ProductoController::class);
 Route::resource('departamento',DepartamentoController::class)->middleware('auth.admin');
 Route::resource('empleado',EmpleadoController::class)->middleware('auth.admin');
+Route::resource('factura',FacturaController::class);
+Route::resource('informacion',InformacionController::class);
+
+Route::get('/informacion', [InformacionController::class,'index']);
+Route::get('/contactUs',[InformacionController::class,'contactUs']);
+Route::get('/aboutUs',[InformacionController::class,'aboutUs']);
 
 Route::get('prueba',function(){
     return view('prueba');

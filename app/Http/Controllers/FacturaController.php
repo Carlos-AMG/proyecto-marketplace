@@ -10,9 +10,10 @@ class FacturaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($cliente)
     {
-        //
+        $facturas = Factura::all()->where('user_id',$cliente->id);
+        return view('factura/index_pactura',['facturas' => $facturas]);
     }
 
     /**
@@ -20,7 +21,7 @@ class FacturaController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -28,7 +29,13 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'fecha' => 'required'
+        ]);
+
+        Factura::create($request->all());
+        
+        return redirect()->route('factura.index');
     }
 
     /**
@@ -36,7 +43,9 @@ class FacturaController extends Controller
      */
     public function show(Factura $factura)
     {
-        //
+        $productos = $factura->productos;
+
+        return view('factura/show_factura',compact('factura','productos'));
     }
 
     /**
