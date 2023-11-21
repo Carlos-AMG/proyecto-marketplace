@@ -17,8 +17,13 @@ class Producto extends Model
     public $timestamps = false;
 
 
-    public function cart(){
-        return $this->hasMany(Cart::class);
+    // public function cart(){
+    //     return $this->belongsToMany(Cart::class,'pivote_carritos');
+    // }
+
+    public function cart()
+    {
+        return $this->belongsToMany(Cart::class,'pivote_carrito');
     }
 
     public function Departamento(){

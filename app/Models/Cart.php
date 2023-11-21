@@ -15,8 +15,11 @@ class Cart extends Model
     }
 
     public function producto(){
-        return $this->hasMany(Producto::class);
+        return $this->belongsToMany(Producto::class,'pivote_carrito');
     }
+    // public function producto(){
+    //     return $this->belongsToMany(Producto::class,'pivote_carrito');
+    // }
 
     protected $fillable = ['user_id','producto_id','quantity'];
 }
