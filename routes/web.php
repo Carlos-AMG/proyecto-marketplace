@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\InformacionController;
+use App\Http\Controllers\UserController;
 use App\Models\Factura;
 use Illuminate\Support\Facades\Route;
 use App\Models\Producto;
@@ -44,13 +45,15 @@ Route::resource('empleado',EmpleadoController::class)->middleware('auth.admin');
 Route::resource('factura',FacturaController::class);
 Route::resource('informacion',InformacionController::class);
 
-Route::get('/informacion', [InformacionController::class,'index']);
+Route::get('/', [InformacionController::class,'index']);
 Route::get('/contactUs',[InformacionController::class,'contactUs']);
 Route::get('/aboutUs',[InformacionController::class,'aboutUs']);
 
 // Route::get('/cart',[CartController::class],'viewCart');
 // Route::get('/view-cart', )
 Route::get('/cart', [CartController::class, 'viewCart']);
+// Route::get('user')
+Route::get('/dashboard', [UserController::class,'index']);
 
 Route::get('prueba',function(){
     return view('prueba');
@@ -74,12 +77,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        $productos = Producto::all();
-
-        return view('dashboard',['productos' => $productos]);
-
-
-        // return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [UserController::class,'index']);
 });

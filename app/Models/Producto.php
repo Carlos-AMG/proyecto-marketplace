@@ -23,7 +23,7 @@ class Producto extends Model
 
     public function cart()
     {
-        return $this->belongsToMany(Cart::class,'pivote_carrito');
+        return $this->belongsToMany(User::class,'cart');
     }
 
     public function Departamento(){

@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Cart extends Model
 {
     use HasFactory;
+    public $timestamp = false;
 
+    // public function user(){
+    //     return $this->belongsTo(User::class);
+    // }
 
-    public function user(){
-        return $this->belongsTo(User::class);
-    }
-
-    public function producto(){
-        return $this->belongsToMany(Producto::class,'pivote_carrito');
-    }
+    // public function producto(){
+    //     return $this->belongsToMany(Producto::class,'pivote_carrito');
+    // }
     // public function producto(){
     //     return $this->belongsToMany(Producto::class,'pivote_carrito');
     // }

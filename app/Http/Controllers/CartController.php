@@ -45,25 +45,25 @@ class CartController extends Controller
         }
 
         
-        // // $cartItem = Cart::where('user_id', $user->id)->where('producto_id', $product->id)->first();
+        $cartItem = Cart::where('user_id', $user->id)->where('producto_id', $product->id)->first();
 
-        // if ($cartItem) {
-        //     // Incrementa la cantidad si el producto ya está en el carrito
-        //     if ($cartItem->quantity + $quantity > $product->existencia) {
-        //         $validator->errors()->add('cantidad', 'La cantidad solicitada en el carrito supera la existencia disponible.');
-        //         return redirect()->back()->withErrors($validator)->withInput();
-        //     }
-        //     $cartItem->update(['quantity' => $cartItem->quantity + $quantity]);
-        // } else {
+        if ($cartItem) {
+            // Incrementa la cantidad si el producto ya está en el carrito
+            if ($cartItem->quantity + $quantity > $product->existencia) {
+                $validator->errors()->add('cantidad', 'La cantidad solicitada en el carrito supera la existencia disponible.');
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            $cartItem->update(['quantity' => $cartItem->quantity + $quantity]);
+        } else {
             // Agrega un nuevo elemento al carrito con la cantidad especificada
-            pivote_carrito::create([
-                'cart_id' => $user->cart->id,
+            Cart::create([
+                'user_id' => $user->id,
                 'producto_id' => $product->id,
                 'quantity' => $quantity,
             ]);
-        // }
+        }
 
-        return redirect()->route('producto.index')->with('success', 'Producto agregado al carrito.');
+        return redirect('/dashboard')->with('success', 'Producto agregado al carrito.');
     }
 
     public function viewCart(){
@@ -84,42 +84,6 @@ class CartController extends Controller
         return view('carrito/index_carrito', compact('cartItems'));
     }
 
-    // public function addToCart(Request $request, Producto $product){
-    //     // Validate the request data
-    //     $request->validate([
-    //         'cantidad' => 'required|numeric|min:1',
-    //     ]);
-        
-    
-    //     // Retrieve the quantity from the request
-    //     $quantity = intval($request->input('cantidad'));
-    
-    //     // Retrieve the authenticated user or guest user
-    //     $user = Auth::user();
-    
-    //     // If the user is not authenticated, use a guest identifier
-    //     if (!$user) {
-    //         $user = ['id' => session()->getId()];
-    //     }
-    //     $cartItem = Cart::where('user_id', $user->id)->where('producto_id', $product->id)->first();
-    //     if ($cartItem) {
-    //         // Increment quantity if the product is already in the cart
-    //         $cartItem->update(['quantity' => ($cartItem->quantity + $quantity)]);
-    //     } else {
-    //         // Add a new item to the cart with the specified quantity
-    //         Cart::create([
-    //             'user_id' => $user->id,
-    //             'producto_id' => $product->id,
-    //             'quantity' => $quantity,
-    //         ]);
-    //     }
-    
-    //     return redirect()->route('producto.index')->with('success', 'Product added to the cart.');
-    // }
-
-
-    //     return redirect()->route('producto.index')->with('success', 'Product added to the cart.');
-    // }
 
     // public function viewCart()
     // {
