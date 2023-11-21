@@ -23,7 +23,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="{{route('producto.index')}}">Products</a></li>
                             @if (Auth::check())
-                                @if (auth()->user()->role != 'client')
+                                @if (auth()->user()->role != 'user')
                                     <li><hr class="dropdown-divider" /></li>
                                     <li><a class="dropdown-item" href="{{route('producto.create')}}">Add Product</a></li>
                                     <li><a class="dropdown-item" href="/deletedProducts">Deleted Products</a></li>
@@ -58,13 +58,6 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/aboutUs">About us</a></li>
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="/contactUs">Contact us</a></li>
                 </ul>
-                {{-- <form class="d-flex">
-                    <button class="btn btn-outline-dark" type="submit">
-                        <i class="bi-cart-fill me-1"></i>
-                        Cart
-                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                    </button>
-                </form> --}}
                 @guest
                     <a href="http://127.0.0.1:8000/login" class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>
                     <a href="http://127.0.0.1:8000/register" class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
@@ -73,6 +66,17 @@
                         <input type="hidden" name="_token" value="8qBdlNwBdE3a3e1AOs1uzSDk1TOonvKWdziUs4MV" autocomplete="off">
                         <a class="block w-full px-4 py-2 text-left text-sm leading-5 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition duration-150 ease-in-out" href="http://127.0.0.1:8000/logout" @click.prevent="$root.submit();">Log Out</a>
                     </form>
+                    @if(auth()->user()->role == 'user')
+                        <form class="d-flex" action='/cart'>
+                        <button class="btn btn-outline-dark" type="submit">
+                            <i class="bi-cart-fill me-1"></i>
+                                Cart
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    @endif
+                    
+                </form>
+
                 @endguest
                 
             </div>

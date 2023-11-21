@@ -17,6 +17,10 @@ class Producto extends Model
     public $timestamps = false;
 
 
+    public function cart(){
+        return $this->hasMany(Cart::class);
+    }
+
     public function Departamento(){
         return $this->belongsTo(Departamento::class);
     }

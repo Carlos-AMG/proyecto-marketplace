@@ -8,6 +8,9 @@ use App\Http\Controllers\FacturaController;
 use App\Http\Controllers\InformacionController;
 use App\Models\Factura;
 use Illuminate\Support\Facades\Route;
+use App\Models\Producto;
+use App\Http\Controllers\CartController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +48,21 @@ Route::get('/informacion', [InformacionController::class,'index']);
 Route::get('/contactUs',[InformacionController::class,'contactUs']);
 Route::get('/aboutUs',[InformacionController::class,'aboutUs']);
 
+// Route::get('/cart',[CartController::class],'viewCart');
+// Route::get('/view-cart', )
+Route::get('/cart', [CartController::class, 'viewCart']);
+
 Route::get('prueba',function(){
     return view('prueba');
+});
+
+// Route::get('/udashboard', function(){
+//     return view('user-dashboard')
+// });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.index');
+    Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.addToCart');
 });
 
 Route::get('/admin',[AdminController::class, 'index'])
@@ -59,6 +75,11 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $productos = Producto::all();
+
+        return view('dashboard',['productos' => $productos]);
+
+
+        // return view('dashboard');
     })->name('dashboard');
 });
