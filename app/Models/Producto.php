@@ -30,8 +30,10 @@ class Producto extends Model
         return $this->belongsTo(Departamento::class);
     }
 
-    public function Detalle_Facturas(){
-        return $this->belongsToMany(Factura::class,'Detalle_Factuar');
+    public function facturas()
+    {
+        return $this->belongsToMany(Factura::class, 'Detalle__Facturas')
+            ->withPivot('cantidad', 'precio');
     }
 
     protected $fillable = ['nombre','existencia','precio','descripcion','imagen','departamento_id'];

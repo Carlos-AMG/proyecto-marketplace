@@ -10,6 +10,10 @@ class Cart extends Model
     use HasFactory;
     public $timestamp = false;
 
+    public function Producto(){
+        return $this->belongsTo(Producto::class);
+    }
+
     // public function user(){
     //     return $this->belongsTo(User::class);
     // }

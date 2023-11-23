@@ -52,8 +52,10 @@ Route::get('/aboutUs',[InformacionController::class,'aboutUs']);
 // Route::get('/cart',[CartController::class],'viewCart');
 // Route::get('/view-cart', )
 Route::get('/cart', [CartController::class, 'viewCart']);
+Route::get('/factura',[UserController::class,'facturas'])->name('factura');
+Route::get('/pay',[CartController::class, 'pay'])->name('pay');
 // Route::get('user')
-Route::get('/dashboard', [UserController::class,'index']);
+// Route::get('/dashboard', [UserController::class,'index']);
 
 Route::get('prueba',function(){
     return view('prueba');

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Producto;
 use App\Models\Cart;
+use App\Models\Detalle_Factura;
+use App\Models\Factura;
 use App\Models\pivote_carrito;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Carbon;
 
 class CartController extends Controller
 {
@@ -63,7 +65,7 @@ class CartController extends Controller
             ]);
         }
 
-        return redirect('/dashboard')->with('success', 'Producto agregado al carrito.');
+        return redirect('/cart')->with('success', 'Producto agregado al carrito.');
     }
 
     public function viewCart(){
@@ -74,14 +76,50 @@ class CartController extends Controller
             $user = ['id' => session()->getId()];
         }
         // $cartItems = Cart::where('user_id', $user->id)->get();
-        $cartItems = Cart::where('user_id', $user->id)->with('producto')->get();
-        dd($cartItems);
+        $cartItems = Cart::all()->where('user_id', $user->id);
+
+        // dd($cartItems);
         // $productos = Producto::
         // dd($cartItems);
         // $cart = Cart::where('user_id',$user->id);
         // $cartItems = Producto::where('id',$cart->producto_id)->get();
 
         return view('carrito/index_carrito', compact('cartItems'));
+    }
+
+    public function pay(){
+        $user = Auth::user();
+
+        // Si el usuario no está autenticado, usa un identificador de invitado
+        // if (!$user) {
+        //     $user = ['id' => session()->getId()];
+        // }
+        // $cartItems = Cart::where('user_id', $user->id)->get();
+        
+        $fechaActual = Carbon::now();
+
+        // Puedes formatear la fecha según tus necesidades
+        $fechaFormateada = $fechaActual->format('Y-m-d');
+        
+        $cartItems = Cart::all()->where('user_id', $user->id);
+        
+        $factura = new Factura();
+        $factura->user_id = $user->id;
+        $factura->fecha = $fechaFormateada;
+
+        $factura->save();
+
+        foreach($cartItems as $item){
+            $detalle = new Detalle_Factura();
+            $detalle->factura_id = $factura->id;
+            $detalle->producto_id = $item->producto_id;
+            $detalle->cantidad = $item->quantity;
+            $detalle->precio = $item->producto->precio;
+            $detalle->save();
+            $item->delete();
+        }
+
+        return redirect()->route('factura');
     }
 
 

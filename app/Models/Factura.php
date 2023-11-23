@@ -12,8 +12,10 @@ class Factura extends Model
 
     public $timestamps = false;
 
-    public function Detalle_Factura(){
-        return $this->belongsToMany(Producto::class,'Detalle_Factura');
+    public function productos()
+    {
+        return $this->belongsToMany(Producto::class, 'detalle__facturas')
+            ->withPivot('cantidad', 'precio');
     }
 
     protected $fillable = ['fecha','user_id'];

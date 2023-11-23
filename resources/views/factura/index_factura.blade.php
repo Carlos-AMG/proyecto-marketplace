@@ -20,10 +20,18 @@
     
     <div class="container px-4 px-lg-5 mt-5">
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            <ul>
             @foreach ($facturas as $factura)
-                {{$factura->$fecha}}
-                {{-- <x-contenedor_producto :empleado='$producto' /> --}}
+            <li>
+                <h1>{{$factura->fecha}}</h1>
+            </li>
+                    @foreach ($factura->productos as $producto)
+                        <li>
+                            <h2>{{$producto->nombre}} {{$producto->pivot->cantidad}}</h2>
+                        </li>
+                    @endforeach
             @endforeach
+            </ul>
         </div>
     </div>
     
