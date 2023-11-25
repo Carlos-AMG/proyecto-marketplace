@@ -32,6 +32,5 @@ class DatabaseSeeder extends Seeder
         $user->email = 'carlos@correo.com';
         $user->password = Hash::make('12345678');
         $user->save();
-
     }
 }

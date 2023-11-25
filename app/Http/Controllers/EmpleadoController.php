@@ -52,7 +52,7 @@ class EmpleadoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(User $departamento)
+    public function show(User $empleado)
     {
         return view('empleado/show_empleado',compact('empleado'));
     }

@@ -2,18 +2,26 @@
 
 namespace App\View\Components;
 
+use App\Models\Cart;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use Illuminate\Support\Facades\Auth;
 
 class nav_bar extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $cantItems = 0;
+
+    public function __construct($cantItems = 0)
     {
-        //
+        $user = Auth::user();
+        $items = Cart::all()->where('user_id',$user->id);
+        foreach($items as $item){
+            $cantItems += $item->quantity;
+        }
     }
 
     /**

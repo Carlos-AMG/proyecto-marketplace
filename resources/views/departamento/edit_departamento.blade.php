@@ -40,7 +40,7 @@
                     
                     <div class="d-flex justify-content-start">
                         <button type="submit" class="btn btn-primary btn-sm mr-2">Submit</button>
-                        <a href="{{ route('producto.index') }}" class="btn btn-secondary btn-sm">Back</a>
+                        <a href="{{ route('departamento.index') }}" class="btn btn-secondary btn-sm">Back</a>
                     </div>
                 </form>
             </div>

@@ -111,10 +111,22 @@ class CartController extends Controller
 
         foreach($cartItems as $item){
             $detalle = new Detalle_Factura();
+            $product = $item->producto;
+
             $detalle->factura_id = $factura->id;
             $detalle->producto_id = $item->producto_id;
             $detalle->cantidad = $item->quantity;
             $detalle->precio = $item->producto->precio;
+            
+            $product->existencia -= $item->quantity;
+
+            if($product->existencia == 0){
+                $product->delete();
+            }
+            else{
+                $product->save();
+            }
+
             $detalle->save();
             $item->delete();
         }

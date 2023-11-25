@@ -58,7 +58,6 @@
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="/aboutUs">About us</a></li>
                     <li class="nav-item"><a class="nav-link" aria-current="page" href="/contactUs">Contact us</a></li>
                     @if (Auth::check())
-                        @if (auth()->user()->role == 'user')
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Profile</a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -73,7 +72,6 @@
                                 </li>
                             </ul>
                         </li>
-                        @endif
                     @endif
                     
                 </ul>

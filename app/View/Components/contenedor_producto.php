@@ -5,6 +5,7 @@ namespace App\View\Components;
 use App\Models\Producto;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class contenedor_producto extends Component
