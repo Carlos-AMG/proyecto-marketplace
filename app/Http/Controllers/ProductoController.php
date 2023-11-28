@@ -24,6 +24,45 @@ class ProductoController extends Controller
         return view('producto/index_producto',['productos' => $productos]);
     }
 
+    // public function getAllProductsApi(Request $request)
+    // {
+    //     $query = Producto::query();
+
+    //     // Filter by name if the "name" query parameter is provided
+    //     if ($request->has('name')) {
+    //         $query->where('nombre', 'like', '%' . $request->input('name') . '%');
+    //     }
+
+    //     // Add more filters as needed...
+
+    //     // Limit the number of results based on the "limit" query parameter
+    //     $limit = $request->input('limit', 10); // Default to 10 if not provided
+    //     $products = $query->paginate($limit);
+
+    //     return response()->json(['data' => $products], 200);
+    // }
+    public function getAllProductsApi(Request $request)
+    {
+        $query = Producto::query();
+
+        // Filter by name if the "name" query parameter is provided
+        if ($request->has('name')) {
+            $query->where('nombre', 'like', '%' . $request->input('name') . '%');
+        }
+
+        // Add more filters as needed...
+
+        // Limit the number of results based on the "limit" query parameter
+        $limit = $request->input('limit', 10); // Default to 10 if not provided
+        $products = $query->paginate($limit);
+
+        // Extract only the product data from the paginated result
+        $productData = $products->items();
+
+        return response()->json(['data' => $productData], 200);
+    }
+
+
     /**
      * Show the form for creating a new resource.
      */

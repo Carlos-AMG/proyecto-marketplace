@@ -37,6 +37,10 @@ use App\Http\Controllers\CartController;
 // Route::resource('departamento',Departamento::class)->middleware('auth');
 
 Route::resource('producto', ProductoController::class);
+
+// Route::get('/api/products/all', [ProductoController::class, 'getAllProductsApi']);
+Route::get('/api/products/all', [ProductoController::class, 'getAllProductsApi'])->name('api.products.all');
+
 Route::get('/allProducts', [ProductoController::class,'allProducts']);
 Route::get('/deletedProducts', [ProductoController::class,'eliminados']);
 
