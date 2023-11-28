@@ -6,6 +6,7 @@ use App\Models\Departamento;
 use App\Models\Producto;
 use GuzzleHttp\Handler\Proxy;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductoController extends Controller
 {
@@ -24,23 +25,6 @@ class ProductoController extends Controller
         return view('producto/index_producto',['productos' => $productos]);
     }
 
-    // public function getAllProductsApi(Request $request)
-    // {
-    //     $query = Producto::query();
-
-    //     // Filter by name if the "name" query parameter is provided
-    //     if ($request->has('name')) {
-    //         $query->where('nombre', 'like', '%' . $request->input('name') . '%');
-    //     }
-
-    //     // Add more filters as needed...
-
-    //     // Limit the number of results based on the "limit" query parameter
-    //     $limit = $request->input('limit', 10); // Default to 10 if not provided
-    //     $products = $query->paginate($limit);
-
-    //     return response()->json(['data' => $products], 200);
-    // }
     public function getAllProductsApi(Request $request)
     {
         $query = Producto::query();
@@ -97,7 +81,9 @@ class ProductoController extends Controller
         // $departamento = new Departamento();
         // $departamento->id = $request->departamento_id;
         
+        // Flash a success message to the session
         
+        Session::flash('success', "Product '{$request->nombre}' creado con exito!");
         return redirect()->route('producto.index');
     }
 
