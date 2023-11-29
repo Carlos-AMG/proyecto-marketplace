@@ -19,7 +19,9 @@ class UserController extends Controller
         
         return view('factura/index_factura',['facturas'=>$facturas]);
     }
-    public function perfil(){
 
-    }
+    
+    // public function perfil(){
+
+    // }
 }

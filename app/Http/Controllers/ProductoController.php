@@ -10,13 +10,6 @@ use Illuminate\Support\Facades\Session;
 
 class ProductoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function __construct()
-    // {
-    //     $this->middleware('auth');
-    // }
 
     public function index()
     {
@@ -29,18 +22,13 @@ class ProductoController extends Controller
     {
         $query = Producto::query();
 
-        // Filter by name if the "name" query parameter is provided
         if ($request->has('name')) {
             $query->where('nombre', 'like', '%' . $request->input('name') . '%');
         }
 
-        // Add more filters as needed...
-
-        // Limit the number of results based on the "limit" query parameter
         $limit = $request->input('limit', 10); // Default to 10 if not provided
         $products = $query->paginate($limit);
 
-        // Extract only the product data from the paginated result
         $productData = $products->items();
 
         return response()->json(['data' => $productData], 200);

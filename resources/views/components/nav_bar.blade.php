@@ -14,7 +14,6 @@
         <div class="container px-4 px-lg-5">
             <a class="navbar-brand" href="{{url('producto/')}}">
                 <img src="{{asset('assets/logo_inge.jfif')}}" alt="Logo" height="40" width="40" class="mr-2"> 
-                Abarrotes el Inge
             </a>
             <a class="navbar-brand" href="{{url('producto/')}}">Abarrotes el Inge</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
@@ -67,12 +66,17 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item">Nombre</a></li>
                                 <li><hr class="dropdown-divider" /></li>
-                                <li><a  class="dropdown-item" aria-current="page" href="/profile">Profile</a></li>
+                                <!-- <li><a  class="dropdown-item" aria-current="page" href="/profile">Profile</a></li> -->
+                                <li><a class="dropdown-item" aria-current="page" href="{{ route('profile.show') }}">Profile</a></li>
                                 <li>
-                                    <form method="POST" action="http://127.0.0.1:8000/logout" x-data="">
-                                        <input type="hidden" name="_token" value="8qBdlNwBdE3a3e1AOs1uzSDk1TOonvKWdziUs4MV" autocomplete="off">
-                                        <a class="dropdown-item" href="http://127.0.0.1:8000/logout" @click.prevent="$root.submit();">Log Out</a>
+                                    <form id="logoutForm" method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit" class="dropdown-item">Log Out</button>
                                     </form>
+                                    <script>
+                                        document.getElementById('logoutForm').addEventListener('submit', function() {
+                                        });
+                                    </script>
                                 </li>
                             </ul>
                         </li>

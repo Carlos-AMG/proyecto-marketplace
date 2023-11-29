@@ -28,6 +28,14 @@
             </div>
         @endif
 
+        @if($errors->any())
+            <div class="alert alert-danger fade">
+                @foreach ($errors->all() as $error)
+                    {{ $error }}<br>
+                @endforeach
+            </div>
+        @endif
+
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach ($productos as $producto)
                 <x-contenedor_producto :producto='$producto' />

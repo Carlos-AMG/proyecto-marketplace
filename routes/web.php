@@ -58,30 +58,25 @@ Route::get('/aboutUs',[InformacionController::class,'aboutUs']);
 Route::get('/cart', [CartController::class, 'viewCart']);
 Route::get('/factura',[UserController::class,'facturas'])->name('factura');
 Route::get('/pay',[CartController::class, 'pay'])->name('pay');
-// Route::get('user')
-// Route::get('/dashboard', [UserController::class,'index']);
 
 Route::get('prueba',function(){
     return view('prueba');
 });
 
-// Route::get('/udashboard', function(){
-//     return view('user-dashboard')
-// });
-
 Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'viewCart'])->name('cart.index');
     Route::post('/cart/add/{product}', [CartController::class, 'addToCart'])->name('cart.addToCart');
+    Route::get('/dashboard', [UserController::class, 'index'])->name('dashboard');
 });
 
 Route::get('/admin',[AdminController::class, 'index'])
     ->middleware('auth.admin')
     ->name('admin.index');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', [UserController::class,'index']);
-});
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified',
+// ])->group(function () {
+//     Route::get('/dashboard', [UserController::class,'index']);
+// });

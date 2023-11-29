@@ -20,35 +20,34 @@ class CartController extends Controller
         $rules = [
             'cantidad' => 'required|numeric|min:1',
         ];
-
+    
         // Crea una instancia del validador
         $validator = Validator::make($request->all(), $rules);
-
+    
         // Verifica si la validación falla
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
+    
         // Obtiene la cantidad del request
         $quantity = intval($request->input('cantidad'));
-
+    
         // Verifica si la cantidad solicitada existe en la base de datos
-        // if ($quantity > $product->existencia) {
-        //     $validator->errors()->add('cantidad', 'La cantidad solicitada supera la existencia disponible.');
-        //     return redirect()->back()->withErrors($validator)->withInput();
-        // }
-
+        if ($quantity > $product->existencia) {
+            $validator->errors()->add('cantidad', 'La cantidad solicitada supera la existencia disponible.');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
         // Obtiene el usuario autenticado o un identificador de invitado
         $user = Auth::user();
-
+    
         // Si el usuario no está autenticado, usa un identificador de invitado
         if (!$user) {
             $user = ['id' => session()->getId()];
         }
-
-        
+    
         $cartItem = Cart::where('user_id', $user->id)->where('producto_id', $product->id)->first();
-
+    
         if ($cartItem) {
             // Incrementa la cantidad si el producto ya está en el carrito
             if ($cartItem->quantity + $quantity > $product->existencia) {
@@ -64,8 +63,8 @@ class CartController extends Controller
                 'quantity' => $quantity,
             ]);
         }
-
-        return redirect('/cart')->with('success', 'Producto agregado al carrito.');
+    
+        return redirect()->route('producto.index')->with('success', 'Producto agregado al carrito.');
     }
 
     public function viewCart(){
