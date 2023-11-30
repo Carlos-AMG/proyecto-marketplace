@@ -25,7 +25,12 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Productos</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{route('producto.index')}}">Products</a></li>
+                            @if (auth()->user()->role != 'user')
+                                <li><a class="dropdown-item" href="{{route('producto.index')}}">Products</a></li>    
+                            @else
+                                <li><a class="dropdown-item" href="/dashboard">Products</a></li>    
+                            @endif
+                            
                                 @if (auth()->user()->role != 'user')
                                     <li><hr class="dropdown-divider" /></li>
                                     <li><a class="dropdown-item" href="{{route('producto.create')}}">Add Product</a></li>
