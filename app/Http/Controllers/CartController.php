@@ -66,18 +66,26 @@ class CartController extends Controller
             ]);
         }
     
-        return redirect()->route('producto.index')->with('success', 'Producto agregado al carrito.');
+        return redirect()->route('producto.index')->with('success', ('Producto'. $product->nombre .'agregado al carrito.'));
     }
 
     public function viewCart(){
         $user = Auth::user();
-
+    
         // Si el usuario no está autenticado, usa un identificador de invitado
         if (!$user) {
             $user = ['id' => session()->getId()];
         }
+    
         $cartItems = Cart::all()->where('user_id', $user->id);
-        return view('carrito/index_carrito', compact('cartItems'));
+    
+        // Calcular el total
+        $total = 0;
+        foreach ($cartItems as $item) {
+            $total += $item->quantity * $item->producto->precio;
+        }
+    
+        return view('carrito/index_carrito', compact('cartItems', 'total'));
     }
 
     public function pay(){

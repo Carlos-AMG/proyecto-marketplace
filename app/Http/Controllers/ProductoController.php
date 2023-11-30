@@ -71,7 +71,7 @@ class ProductoController extends Controller
         
         // Flash a success message to the session
         
-        Session::flash('success', "Product '{$request->nombre}' creado con exito!");
+        Session::flash('success', "Producto '{$request->nombre}' creado con exito!");
         return redirect()->route('producto.index');
     }
 

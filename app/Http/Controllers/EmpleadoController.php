@@ -6,6 +6,7 @@ use App\Models\Departamento;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class EmpleadoController extends Controller
 {
@@ -46,6 +47,7 @@ class EmpleadoController extends Controller
         $emp->departamento_id = $request->departamento_id;
         $emp->save();
 
+        Session::flash('success', "Empleado agregado con exito!");
         return redirect()->route('empleado.index');
     }
 
