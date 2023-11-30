@@ -14,10 +14,35 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{url('public\startbootstrap-shop-homepage-gh-pages\css\styles.css')}}" rel="stylesheet" /> --}}
     <title>Productos</title>
+    <style>
+        /* Add some styles for the fading effect */
+        .fade {
+            animation: fadeOut 5s ease-in-out forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+
 </head>
 <body>
     <x-nav_bar/>
     <div class="container px-4 px-lg-5 mt-5">
+        @if(Session::has('success'))
+                <div class="alert alert-success fade">
+                    {{ Session::get('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <div class="alert alert-danger fade">
+                    @foreach ($errors->all() as $error)
+                        {{ $error }}<br>
+                    @endforeach
+                </div>
+            @endif
         <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
             @foreach ($departamentos as $departamento)
                 <x-contenedor_departamento :departamento='$departamento'/>

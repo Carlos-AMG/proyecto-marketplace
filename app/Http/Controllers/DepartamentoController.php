@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Departamento;
 use App\Models\Producto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
 
 class DepartamentoController extends Controller
 {
@@ -38,6 +40,7 @@ class DepartamentoController extends Controller
 
         Departamento::create($request->all());
 
+        Session::flash('success', "Departamento '{$request->nombre}' creado con exito!");
         return redirect()->route('departamento.index');
     }
 
