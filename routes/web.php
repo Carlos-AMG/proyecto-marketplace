@@ -73,6 +73,8 @@ Route::get('/admin',[AdminController::class, 'index'])
     ->middleware('auth.admin')
     ->name('admin.index');
 
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard')->middleware('auth');
+
 // Route::middleware([
 //     'auth:sanctum',
 //     config('jetstream.auth_session'),
