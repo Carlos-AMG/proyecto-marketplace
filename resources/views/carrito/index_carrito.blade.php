@@ -14,7 +14,7 @@
         {{$item->quantity}}
     @endforeach
     <form action="{{route('pay')}}" method="GET">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Pagar</button>
     </form>
 </body>
 </html>
