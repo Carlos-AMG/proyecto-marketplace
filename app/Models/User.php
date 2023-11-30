@@ -34,7 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'profile_photo_path','rfc','role'
     ];
 
     /**
@@ -63,7 +63,5 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var array<int, string>
      */
-    protected $appends = [
-        'profile_photo_url',
-    ];
+
 }

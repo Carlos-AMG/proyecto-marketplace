@@ -25,7 +25,7 @@
                     </div>
                 @endif
     
-                <form action="{{ route('empleado.store') }}" method="POST">
+                <form action="{{ route('empleado.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
@@ -47,10 +47,10 @@
                         <input type="text" name="password" id="password" class="form-control" value="{{ old('password') }}">
                     </div>
                     
-                    {{-- <div class="form-group">
-                        <label for="imagen">Imagen URL:</label>
-                        <input type="url" name="imagen" id="imagen" class="form-control" placeholder="https://example.com/image.jpg">
-                    </div> --}}
+                    <div class="form-group">
+                        <label for="foto">Foto:</label>
+                        <input type="file" name="foto" id="foto" class="form-control" value="{{old('foto')}}">
+                    </div>
 
                     <div class="form-group">
                         <label for="departamento_id">Departamento:</label>
