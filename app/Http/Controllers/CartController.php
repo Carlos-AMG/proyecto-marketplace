@@ -11,6 +11,8 @@ use App\Models\pivote_carrito;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
+// use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class CartController extends Controller
 {
@@ -74,29 +76,15 @@ class CartController extends Controller
         if (!$user) {
             $user = ['id' => session()->getId()];
         }
-        // $cartItems = Cart::where('user_id', $user->id)->get();
         $cartItems = Cart::all()->where('user_id', $user->id);
-
-        // dd($cartItems);
-        // $productos = Producto::
-        // dd($cartItems);
-        // $cart = Cart::where('user_id',$user->id);
-        // $cartItems = Producto::where('id',$cart->producto_id)->get();
-
         return view('carrito/index_carrito', compact('cartItems'));
     }
 
     public function pay(){
         $user = Auth::user();
-
-        // Si el usuario no está autenticado, usa un identificador de invitado
-        // if (!$user) {
-        //     $user = ['id' => session()->getId()];
-        // }
-        // $cartItems = Cart::where('user_id', $user->id)->get();
         
         $fechaActual = Carbon::now();
-
+    
         // Puedes formatear la fecha según tus necesidades
         $fechaFormateada = $fechaActual->format('Y-m-d');
         
@@ -105,47 +93,59 @@ class CartController extends Controller
         $factura = new Factura();
         $factura->user_id = $user->id;
         $factura->fecha = $fechaFormateada;
-
+    
         $factura->save();
-
+    
+        $totalCost = 0; // To calculate the total cost
+    
         foreach($cartItems as $item){
             $detalle = new Detalle_Factura();
             $product = $item->producto;
-
+    
             $detalle->factura_id = $factura->id;
             $detalle->producto_id = $item->producto_id;
             $detalle->cantidad = $item->quantity;
             $detalle->precio = $item->producto->precio;
             
+            // Calculate the total cost for each item
+            $totalCost += $item->quantity * $item->producto->precio;
+    
             $product->existencia -= $item->quantity;
-
+    
             if($product->existencia == 0){
                 $product->delete();
             }
             else{
                 $product->save();
             }
-
+    
             $detalle->save();
             $item->delete();
         }
+    
+        // Add total cost to the data array
+        $data = [
+            'precio' => $totalCost,
+            'fecha' => $fechaFormateada,
+            'cartItems' => $cartItems,
+        ];
+        $pdf = \PDF::loadView('factura_pdf', $data);
 
-        return redirect()->route('factura');
+        $timestamp = now()->timestamp;
+        $pdfFileName = 'factura_' . $timestamp . '.pdf';
+    
+        // $pdf->download($pdfFileName);
+        return $pdf->download($pdfFileName);
+    
+        // return redirect()->route('factura');
     }
 
-
-    // public function viewCart()
-    // {
-    //     $user = Auth::user();
-
-    //     if (!$user) {
-    //         $user = ['id' => session()->getId()];
-    //     }
-
-    //     $cartItems = Cart::where('user_id', $user->id)->with('producto')->get();
-
-    //     return view('cart.index', compact('cartItems'));
-    // }
-
-    // Add other cart-related actions as needed
+    public function descargarFactura(){
+        $pdf = session('pdf');
+    
+        // Puedes realizar cualquier lógica adicional aquí antes de descargar el PDF
+    
+        return $pdf;
+    }
+    
 }
