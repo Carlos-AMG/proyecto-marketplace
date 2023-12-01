@@ -15,6 +15,7 @@ class Factura extends Model
     public function productos()
     {
         return $this->belongsToMany(Producto::class, 'detalle__facturas')
+            ->withTrashed()
             ->withPivot('cantidad', 'precio');
     }
 

@@ -10,7 +10,7 @@ use App\Models\Factura;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
-// use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\PDF;
 
 class CartController extends Controller
 {

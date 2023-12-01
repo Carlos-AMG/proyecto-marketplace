@@ -24,22 +24,21 @@ class UserController extends Controller
 
     public function descargar_factura(Factura $factura){
         // Obtén los detalles de la factura
-        $detallesFactura = Detalle_Factura::where('factura_id', $factura->id)->get();
+        // $detallesFactura = Detalle_Factura::where('factura_id', $factura->id)->get();
         // $detallesFactura = Detalle_Factura::with('producto')->where('factura_id', $factura->id)->get();
 
         $totalCost = 0;
         $cartItems = [];
-
-        foreach ($detallesFactura as $detalle) {
-            $producto = Producto::find($detalle->producto_id);
-
+        
+        foreach ($factura->productos as $producto) {
+            // dd($producto);
             $cartItems[] = [
                 'producto' => $producto, // Almacena el objeto Producto completo
-                'cantidad' => $detalle->cantidad,
-                'precio' => $detalle->precio,
-                'subtotal' => $detalle->cantidad * $detalle->precio,
+                'cantidad' => $producto->pivot->cantidad,
+                'precio' => $producto->precio,
+                'subtotal' => $producto->pivot->cantidad * $producto->precio,
             ];            
-            $totalCost += $detalle->cantidad * $detalle->precio;
+            $totalCost += $producto->pivot->cantidad * $producto->precio;
         }
 
         $data = [
