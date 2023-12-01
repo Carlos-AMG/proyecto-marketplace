@@ -13,15 +13,15 @@ class nav_bar extends Component
     /**
      * Create a new component instance.
      */
-    public $cantItems = 0;
+    // public $cantItems = 0;
 
-    public function __construct($cantItems = 0)
+    public function __construct()
     {
-        $user = Auth::user();
-        $items = Cart::all()->where('user_id',$user->id);
-        foreach($items as $item){
-            $cantItems += $item->quantity;
-        }
+        // $user = Auth::user();
+        // $items = Cart::all()->where('user_id',$user->id);
+        // foreach($items as $item){
+        //     $this->cantItems += $item->quantity;
+        // }
     }
 
     /**

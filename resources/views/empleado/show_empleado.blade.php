@@ -10,6 +10,9 @@
         <x-nav_bar/>
         <ul>
             <li>
+                <img src="{{asset($empleado->profile_photo_path)}}" alt="">                
+            </li>
+            <li>
                 <h3>Id: {{$empleado->id}}</h3>
             </li>
             <li>

@@ -1,7 +1,7 @@
 <div class="col mb-5">
     <div class="card h-100">
         
-        {{-- <img class="card-img-top" src="{{ $producto->imagen }}" alt="..." /> --}}
+        <img class="card-img-top" src="{{ asset($empleado->profile_photo_path) }}" alt="..." />
         
         <div class="card-body p-4">
             <div class="text-center">

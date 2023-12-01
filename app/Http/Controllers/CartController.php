@@ -7,7 +7,6 @@ use App\Models\Producto;
 use App\Models\Cart;
 use App\Models\Detalle_Factura;
 use App\Models\Factura;
-use App\Models\pivote_carrito;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;

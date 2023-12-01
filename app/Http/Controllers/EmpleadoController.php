@@ -34,7 +34,8 @@ class EmpleadoController extends Controller
         $request -> validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'rfc' => 'required',
         ]);
         
         // User::create($request->all())->hash('password')->role='employee';
@@ -45,6 +46,15 @@ class EmpleadoController extends Controller
         $emp->rfc = $request->rfc;
         $emp->role = 'employee';
         $emp->departamento_id = $request->departamento_id;
+        
+        if($request->hasFile('foto')){
+            $imagen = $request->file('foto');
+            $nombreimagen = time() . '-' . $imagen->getClientOriginalName();
+            $ruta = 'imgProfile/';
+            $uploadSucces = $request->file('foto')->move($ruta,$nombreimagen);
+            $emp->profile_photo_path = $ruta . $nombreimagen;
+        }
+        // dd($emp);
         $emp->save();
 
         Session::flash('success', "Empleado agregado con exito!");
