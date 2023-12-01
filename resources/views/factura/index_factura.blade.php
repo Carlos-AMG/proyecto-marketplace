@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
-    
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="{{url('public\startbootstrap-shop-homepage-gh-pages\assets\favicon.ico')}}" />
-    <!-- Bootstrap icons-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="{{url('public\startbootstrap-shop-homepage-gh-pages\css\styles.css')}}" rel="stylesheet" /> --}}
     <title>Facturas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" integrity="sha384-bfsApXa1ZL3+dqYcCziFq3g20e7/uAWUAdy2YH1x6o1UW0/Xj4QYoM7ZNm9iwlj" crossorigin="anonymous">
 </head>
 <body>
-    <x-nav_bar/>  
-    
-    <div class="container px-4 px-lg-5 mt-5">
-        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-            <ul>
+    <x-nav_bar/>
+
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
             @foreach ($facturas as $factura)
-            <li>
-                <h1>{{$factura->fecha}}</h1>
-            </li>
-                    @foreach ($factura->productos as $producto)
-                        <li>
-                            <h2>{{$producto->nombre}} {{$producto->pivot->cantidad}}</h2>
-                        </li>
-                    @endforeach
+                <div class="col">
+                    <div class="card h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $factura->fecha }}</h5>
+                            <ul class="list-group list-group-flush">
+                                @foreach ($factura->productos as $producto)
+                                    <li class="list-group-item">
+                                        <span>{{ $producto->nombre }}</span>
+                                        <span class="badge bg-secondary">{{ $producto->pivot->cantidad }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href="{{ route('factura.show', ['factura' => $factura->id]) }}" class="btn btn-outline-dark" style="width: 100%">Mostrar</a>
+                        </div>
+                    </div>
+                </div>
             @endforeach
-            </ul>
         </div>
     </div>
-    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-eLDBdEph0Lh7pJg0JgxS+IKqB5F8J3z4NR3t3uMAf3wHqdKEQzk3UENnEQLa+fuX" crossorigin="anonymous"></script>
 </body>
 </html>

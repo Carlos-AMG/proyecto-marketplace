@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Carbon;
 // use Barryvdh\DomPDF\PDF;
-use Barryvdh\DomPDF\Facade as PDF;
 
 class CartController extends Controller
 {
@@ -66,7 +65,7 @@ class CartController extends Controller
             ]);
         }
     
-        return redirect()->route('producto.index')->with('success', ('Producto'. $product->nombre .'agregado al carrito.'));
+        return redirect()->route('producto.index')->with('success', ('Producto '. $product->nombre .' agregado al carrito.'));
     }
 
     public function viewCart(){
@@ -130,22 +129,14 @@ class CartController extends Controller
             $detalle->save();
             $item->delete();
         }
-    
-        // Add total cost to the data array
-        $data = [
-            'precio' => $totalCost,
-            'fecha' => $fechaFormateada,
-            'cartItems' => $cartItems,
-        ];
-        $pdf = \PDF::loadView('factura_pdf', $data);
+        
 
-        $timestamp = now()->timestamp;
-        $pdfFileName = 'factura_' . $timestamp . '.pdf';
+        
     
         // $pdf->download($pdfFileName);
-        return $pdf->download($pdfFileName);
+        // return $pdf->download($pdfFileName);
     
-        // return redirect()->route('factura');
+        return redirect()->route('factura');
     }
 
     public function descargarFactura(){

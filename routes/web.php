@@ -58,6 +58,8 @@ Route::get('/aboutUs',[InformacionController::class,'aboutUs']);
 Route::get('/cart', [CartController::class, 'viewCart']);
 Route::get('/factura',[UserController::class,'facturas'])->name('factura');
 Route::get('/pay',[CartController::class, 'pay'])->name('pay');
+// Route::get('/descargarFactura', [UserController::class, 'descargar_factura'])->name('descargarFactura');
+Route::get('descargarFactura/{factura}', [UserController::class, 'descargar_factura'])->name('descargarFactura');
 
 Route::get('prueba',function(){
     return view('prueba');
