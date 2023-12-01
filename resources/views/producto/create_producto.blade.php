@@ -54,10 +54,18 @@
 
                     <div class="form-group">
                         <label for="departamento_id">Departamento:</label>
-                        <select name="departamento_id" id="departamento_id" class="form-control">                            
-                            @foreach ($departamentos as $departamento)
-                                <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
-                            @endforeach
+                        <select name="departamento_id" id="departamento_id" class="form-control">
+                            @if (Auth::check())
+                                @if (auth()->user()->role == 'admin')
+                                    @foreach ($departamentos as $departamento)
+                                        <option value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                                    @endforeach        
+                                @else
+                                <option value="{{auth()->user()->departamento->id}}">{{auth()->user()->departamento->nombre}}</option>
+                                @endif
+                                
+                            @endif                            
+                            
                         </select>
                     </div>
 

@@ -74,7 +74,8 @@ class EmpleadoController extends Controller
      */
     public function edit(User $empleado)
     {
-        return view('empleado/edit_empleado',compact('empleado'));
+        $departamentos = Departamento::all();
+        return view('empleado/edit_empleado',compact('empleado','departamentos'));
     }
 
     /**
@@ -93,9 +94,9 @@ class EmpleadoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $departamento)
+    public function destroy(User $empleado)
     {
-        $departamento->delete();
+        $empleado->delete();
         return redirect()->route('empleado.index');
     }
 }

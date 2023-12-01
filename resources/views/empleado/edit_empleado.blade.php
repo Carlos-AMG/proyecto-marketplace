@@ -31,19 +31,19 @@
 
                     <div class="form-group">
                         <label for="nombre">Nombre del empleado:</label>
-                        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{$emlpeado->name}}">
+                        <input type="text" name="nombre" id="nombre" class="form-control"  value="{{$empleado->name}}">
                     </div>
                     <div class="form-group">
                         <label for="rfc">RFC del empleado:</label>
-                        <input type="text" name="rfc" id="rfc" class="form-control"  value="{{$emlpeado->rfc}}">
+                        <input type="text" name="rfc" id="rfc" class="form-control"  value="{{$empleado->rfc}}">
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo del empleado:</label>
-                        <input type="email" name="correo" id="correo" class="form-control"  value="{{$emlpeado->email}}">
+                        <input type="email" name="correo" id="correo" class="form-control"  value="{{$empleado->email}}">
                     </div>
                     <div class="form-group">
                         <label for="rfc"> del empleado:</label>
-                        <input type="text" name="rfc" id="rfc" class="form-control"  value="{{$emlpeado->rfc}}">
+                        <input type="text" name="rfc" id="rfc" class="form-control"  value="{{$empleado->rfc}}">
                     </div>
 
                     <div class="form-group">

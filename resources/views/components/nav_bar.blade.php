@@ -71,7 +71,7 @@
                                 <li><a class="dropdown-item">{{auth()->user()->name}}</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <!-- <li><a  class="dropdown-item" aria-current="page" href="/profile">Profile</a></li> -->
-                                <li><a class="dropdown-item" aria-current="page" href="{{ route('profile.show') }}">Profile</a></li>
+                                <li><a class="dropdown-item" aria-current="page" href="{{ route('showProfile') }}">Profile</a></li>
                                 @if (auth()->user()->role == 'user')
                                 <li><a class="dropdown-item" aria-current="page" href="{{ route('factura') }}">Facturas</a></li>
                                 @endif
